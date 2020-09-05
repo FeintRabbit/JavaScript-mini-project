@@ -33,3 +33,5 @@ function colorUpdate() {
     valueOutput.style.color = "black";
   }
 }
+
+// project complete
