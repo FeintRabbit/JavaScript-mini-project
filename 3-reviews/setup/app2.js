@@ -91,3 +91,5 @@ function updateData() {
   job.textContent = person.job;
   info.textContent = person.text;
 }
+
+// project complete
