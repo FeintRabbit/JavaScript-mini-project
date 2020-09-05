@@ -10,6 +10,13 @@
 const navBtn = document.querySelector(".nav-toggle");
 const linksNav = document.querySelector(".links");
 
+// toggle classlist
+navBtn.addEventListener("click", () => {
+  linksNav.classList.toggle("show-links");
+});
+
+// long soltuin: add remove method if statement
+
 // navBtn.addEventListener("click", () => {
 //   if (linksNav.classList.contains("show-links")) {
 //     linksNav.classList.remove("show-links");
@@ -17,7 +24,3 @@ const linksNav = document.querySelector(".links");
 //     linksNav.classList.add("show-links");
 //   }
 // });
-
-navBtn.addEventListener("click", () => {
-  linksNav.classList.toggle("show-links");
-});
