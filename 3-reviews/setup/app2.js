@@ -55,7 +55,8 @@ const prevBtn = document.querySelector(".prev-btn");
 const randBtn = document.querySelector(".random-btn");
 
 // Solution 2:
-// .find() method on the object, to look for the person id.  then loop through resulting person array. This is good if object never changes, as an array would be out of sequence if ref by array position alone.
+// .find() method on the array, return the person object. Looking for the person id.
+// Buttons change the resulting person id.
 
 // initial id value of 1, update DOM
 let personId = 1;
