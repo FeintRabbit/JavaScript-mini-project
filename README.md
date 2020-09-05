@@ -1,1 +1,1 @@
-JavaScript mini projects. Not hosted live.
+JavaScript mini projects from tutorial course. Not hosted live.
