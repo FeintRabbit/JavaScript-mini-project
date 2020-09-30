@@ -72,3 +72,51 @@ const menu = [
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
 ];
+
+const sectionCenter = document.querySelector(".section-center");
+const filterBtns = document.querySelectorAll(".filter-btn");
+
+// load items
+displayMenuItems(menu);
+
+// filter item using buttons
+// loop buttons & add event listener
+filterBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    // store the dataset.id for each button clicked
+    const category = e.currentTarget.dataset.id;
+    // filter the array for items that match that dataset
+    let result = menu.filter((item) => item.category == category);
+    // if all button is clicked, return full [menu]
+    if (category === "all") {
+      displayMenuItems(menu);
+    }
+    // else return the filtered array
+    else {
+      displayMenuItems(result);
+    }
+  });
+});
+
+// helper function to display all the menu items in an object array.
+function displayMenuItems(menuItems) {
+  // map array with completed HTML
+  let displayMenu = menuItems.map((item) => {
+    return `<article class="menu-item">
+            <img src=${item.img} class="photo" alt=${item.title} />
+            <div class="item-info">
+              <header>
+                <h4>${item.title}</h4>
+                <h4 class="price">${item.price}</h4>
+              </header>
+              <p class="item-text">
+                ${item.desc}
+              </p>
+            </div>
+          </article>`;
+  });
+  // join into one string
+  displayMenu = displayMenu.join("");
+  // update DOM
+  sectionCenter.innerHTML = displayMenu;
+}
