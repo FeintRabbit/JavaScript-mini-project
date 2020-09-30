@@ -2,7 +2,7 @@ const menu = [
   {
     id: 1,
     title: "buttermilk pancakes",
-    category: "breakfast",
+    category: "boobs",
     price: 15.99,
     img: "./images/item-1.jpeg",
     desc: `I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever cold-pressed `,
@@ -74,13 +74,26 @@ const menu = [
 ];
 
 const sectionCenter = document.querySelector(".section-center");
+const btnContainer = document.querySelector(".btn-container");
+
+// get array of categories, for use in generating buttons
+const dBtns = menu.reduce(
+  (values, item) => {
+    if (!values.includes(item.category)) {
+      values.push(item.category);
+    }
+    return values;
+  },
+  ["all"]
+);
+
+// load btns
+displayBtns(dBtns);
+
+// set var for dynamic buttons to be filtered (after buttons are loaded to the DOM)
 const filterBtns = document.querySelectorAll(".filter-btn");
 
-// load items
-displayMenuItems(menu);
-
-// filter item using buttons
-// loop buttons & add event listener
+// add event listener to each button, dynamically from the generated button html
 filterBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     // store the dataset.id for each button clicked
@@ -97,6 +110,27 @@ filterBtns.forEach((btn) => {
     }
   });
 });
+
+// load items
+displayMenuItems(menu);
+
+/* 
+================
+Helper Functions
+================
+*/
+
+// function to return html for buttons
+function displayBtns(btns) {
+  // generate html for each button
+  let dynamicBtns = btns.map((b) => {
+    return `<button class="filter-btn" type="button" data-id="${b}">${b}</button>`;
+  });
+  // join html string
+  dynamicBtns = dynamicBtns.join("");
+  // update DOM
+  btnContainer.innerHTML = dynamicBtns;
+}
 
 // helper function to display all the menu items in an object array.
 function displayMenuItems(menuItems) {
