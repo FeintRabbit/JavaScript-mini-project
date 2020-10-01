@@ -90,27 +90,6 @@ const dBtns = menu.reduce(
 // load btns
 displayBtns(dBtns);
 
-// set var for dynamic buttons to be filtered (after buttons are loaded to the DOM)
-const filterBtns = document.querySelectorAll(".filter-btn");
-
-// add event listener to each button, dynamically from the generated button html
-filterBtns.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    // store the dataset.id for each button clicked
-    const category = e.currentTarget.dataset.id;
-    // filter the array for items that match that dataset
-    let result = menu.filter((item) => item.category == category);
-    // if all button is clicked, return full [menu]
-    if (category === "all") {
-      displayMenuItems(menu);
-    }
-    // else return the filtered array
-    else {
-      displayMenuItems(result);
-    }
-  });
-});
-
 // load items
 displayMenuItems(menu);
 
@@ -130,6 +109,27 @@ function displayBtns(btns) {
   dynamicBtns = dynamicBtns.join("");
   // update DOM
   btnContainer.innerHTML = dynamicBtns;
+
+  // set var for dynamic buttons to be filtered (after buttons are loaded to the DOM)
+  const filterBtns = document.querySelectorAll(".filter-btn");
+
+  // add event listener to each button, dynamically from the generated button html
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      // store the dataset.id for each button clicked
+      const category = e.currentTarget.dataset.id;
+      // filter the array for items that match that dataset
+      let result = menu.filter((item) => item.category == category);
+      // if all button is clicked, return full [menu]
+      if (category === "all") {
+        displayMenuItems(menu);
+      }
+      // else return the filtered array
+      else {
+        displayMenuItems(result);
+      }
+    });
+  });
 }
 
 // helper function to display all the menu items in an object array.
